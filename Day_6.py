@@ -4,7 +4,7 @@
 
 ### Maze ###
 
-## Funciones ## 
+## Fuctions ## 
 # The functions were defined on the website.
 
 ## Codigo ##
