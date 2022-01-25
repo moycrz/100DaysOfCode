@@ -1,21 +1,41 @@
-def prime_number(check_number):
-    if check_number == 1:
-        return "{check_number} it's not a prime number"
+import  os
+from Day_8_art import logo
 
-    else:
-        count = 0
-        for i in range(1, check_number + 1):
-            if check_number % i == 0:
-                count += 1
-            else:
-                continue
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-        if count >= 2:
-            return f"{check_number}, it's not a prime number"
+def encrypt(word, n):
+    encrypt_word = ""
+    
+    for letter in word:
+        encrypt_word += alphabet[alphabet.index(letter) + n]
+    print(f"Your message encripted is: {encrypt_word}")
 
-        elif count ==2:
-            return f"{check_number}, it's a prime number"
+def decrypt(word, n):
+    decrypt_word = ""
+    for letter in word:
+        decrypt_word += alphabet[alphabet.index(letter) - n]
+    print(f"Your message was: {decrypt_word}")
 
-if __name__ == "__main__":
-    usr_choose = input("Write the number you want to check: ")
-    prime_number(usr_choose)
+if __name__ == '__main__':
+    program_continue = True
+
+    while program_continue:
+        os.system('clear')
+        print(logo)
+        direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+        shift = int(input("Type the shift number:\n"))
+        if direction == 'encode':
+            encrypt(input("Type your message:\n").lower(), shift)
+
+        elif direction == 'decode':
+            decrypt(input("Type your message:\n").lower(), shift)
+
+        else:
+            print("Out of range")
+
+        usr_choose = input("Want to encrypt more messages? Yes or No: ").lower()
+        if usr_choose == "yes":
+            continue
+        
+        elif usr_choose == "no":
+            program_continue = False
