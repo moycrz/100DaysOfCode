@@ -19,7 +19,7 @@ def add_bidders():
 
         else:
             continue
-    
+
 
 def find_highest_bidder(bidders):
     highest_bidder = 0
