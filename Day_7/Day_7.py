@@ -1,7 +1,7 @@
 import random
 import os
-from Day_7_art import logo, stages
-from Day_7_words import word_list
+from art import logo, stages
+from words import word_list
 
 chosen_word = random.choice(word_list)
 display = ["_" for i in range(0, len(chosen_word))]

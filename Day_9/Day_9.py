@@ -1,5 +1,5 @@
 import os
-from Day_9_art import logo
+from art import logo
 
 def add_bidders():
     there_are_bidders = True
