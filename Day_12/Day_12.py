@@ -1,52 +1,47 @@
-from itertools import count
+import random
+import os
 from art import logo
 
 
-
-
-def check_answer(guess, answer, turns):
-    count = turns
-
-    while turns >= count:
-        if guess == answer:
-            pass        
-        elif guess < answer:
-            print("Too low.")
-        elif guess > answer:
-            print("Too high.")
-        elif guess == answer - 5 or guess == answer - 4 or guess == answer - 3:
-            print("Close, a little more")
-        elif guess == answer + 5 or guess == answer + 4 or guess == answer + 3:
-            print("Close, a little less")
-        elif guess == answer - 2 or guess == answer -1:
-            print("Very close ↑")
-        elif guess == answer + 2 or guess == answer + 1:
-            print("Very close ↓")
-        
-        count -= 1
-        return count
+def random_number():
+    number = random.randint(1, 100)
+    return number
 
 
 def play_game():
-    game = True
+    answer = random_number()
+    print(f"Pssst, the correct answer is {answer}")
     difficult = input("Choose a difficulty. Type 'easy' or 'hard': ")
     if difficult == "easy":
-        while game:
-            print(f"You have {count} attempts remaining to guess the number.")
-            check_answer(turns = 10)
-
-    if difficult == "hard":
-        while game:
-            print(f"You have {count} attempts remaining to guess the number.")
-            turns = 5
-
+        turns = 10
+    elif difficult == "hard":
+        turns = 5
     
+    print(f"You have {turns} attempts remaining to guess the number.")
 
-
-
-
-
+    while turns >= 0:
+        guess = int(input("Make a guess: "))
+    
+        if guess == answer:
+            print(f"You got it! The answer was {answer}.")
+            break        
+        elif guess < answer:
+            print("Too low.")
+            turns -= 1
+            print(f"You have {turns} attempts remaining to guess the number.")
+        elif guess > answer:
+            print("Too high.")
+            turns -= 1
+            print(f"You have {turns} attempts remaining to guess the number.")
+        if turns == 0:
+            print("You've run out of guesses, you lose.")
+        
+        
 
 
 if __name__ == '__main__':
-    check_answer()
+    os.system("clear")
+    print(logo)
+    print("Welcome to the Number Guessing Game!")
+    print("I'm thinking of a number between 1 and 100.")
+    play_game()
