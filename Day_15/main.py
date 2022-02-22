@@ -70,10 +70,14 @@ def money_check(cost, coffee_type):
 
 
 def run():
-    
-    while True:
+    is_on = True
+    while is_on:
         print(f"\tMenu:\nEspresso:\t${espresso_cost}\nLatte:\t\t${latte_cost}\nCappuccino:\t${cappuccino_cost}\n")
         answer = input("What would you like? (espresso/latte/cappuccino): ").lower()
+
+        if answer == "off":
+            break
+
         if answer == "report":
             print(f"Water: {water}ml")
             print(f"Milk: {milk}ml")
@@ -104,7 +108,7 @@ def run():
 
         if type(ans) == str:
             print(ans)
-            break
+            is_on == False
         
         else:
             if answer == "espresso":
