@@ -12,10 +12,10 @@ money_machine = MoneyMachine()
 menu_table = PrettyTable()
 menu_table.add_column("Coffee", ["Espresso", "Latte", "Cappuccino"])
 menu_table.add_column("Price", ["$1.5", "$2.5", "$3"])
-
-espresso = MenuItem("espresso", 50, 0, 18, 1.5)
-latte = MenuItem("latte", 200, 150, 24, 2.5)
-cappuccino = MenuItem("cappuccino", 250, 50, 24, 3)
+#
+# espresso = MenuItem("espresso", 50, 0, 18, 1.5)
+# latte = MenuItem("latte", 200, 150, 24, 2.5)
+# cappuccino = MenuItem("cappuccino", 250, 50, 24, 3)
 
 
 def ingredients(coffee_choice):
@@ -29,6 +29,7 @@ def cost(coffee_type):
 while is_on:
     print(menu_table)
     choice = input("What would you like? (espresso/latte/cappuccino/): ").lower()
+    drink = m_item.find_drink(choice)
 
     if choice == "off":
         is_on = False
@@ -38,25 +39,25 @@ while is_on:
         money_machine.report()
 
     elif choice == "espresso":
-        if coffee_machine.is_resource_sufficient(espresso):
-            price = cost(espresso)
+        if coffee_machine.is_resource_sufficient(drink):
+            price = cost(drink)
             if money_machine.make_payment(price):
-                coffee_machine.make_coffee(espresso)
+                coffee_machine.make_coffee(drink)
             else:
                 continue
 
     elif choice == "latte":
-        if coffee_machine.is_resource_sufficient(latte):
-            price = cost(latte)
+        if coffee_machine.is_resource_sufficient(drink):
+            price = cost(drink)
             if money_machine.make_payment(price):
-                coffee_machine.make_coffee(latte)
+                coffee_machine.make_coffee(drink)
             else:
                 continue
 
     elif choice == "cappuccino":
-        if coffee_machine.is_resource_sufficient(cappuccino):
-            price = cost(cappuccino)
+        if coffee_machine.is_resource_sufficient(drink):
+            price = cost(drink)
             if money_machine.make_payment(price):
-                coffee_machine.make_coffee(cappuccino)
+                coffee_machine.make_coffee(drink)
             else:
                 continue
