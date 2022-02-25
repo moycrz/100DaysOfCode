@@ -35,7 +35,7 @@ while is_on:
 
     elif choice == "report":
         coffee_machine.report()
-        print(money_machine.report())
+        money_machine.report()
 
     elif choice == "espresso":
         if coffee_machine.is_resource_sufficient(espresso):
