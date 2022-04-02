@@ -30,7 +30,7 @@ for actual_name in names:
         file.write(str_content_letter)
 
 # ------------------------------------------------------------------------------------------
-# TODO: Create a letter using starting_letter.txt (class version) 
+# TODO: Create a letter using starting_letter.txt (class version)
 PLACEHOLDER = "[name]"
 
 with open("Input/Names/invited_names.txt") as names_file:
