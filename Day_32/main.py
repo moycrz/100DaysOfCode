@@ -9,7 +9,6 @@ MY_EMAIL = "moises.crza@gmail.com"
 PASSWORD = "J@maicanegra2708"
 PLACEHOLDER = "[NAME]"
 now = dt.datetime.now()
-random_letter = []
 new_birthday = {}
 
 data = pandas.read_csv("birthdays.csv")
@@ -54,31 +53,38 @@ def birthday_update():
 #  name from birthdays.csv
 # TODO: 4. Send the letter generated in step 3 to that person's email address.
 
-for birth in birthdays:
-    if birth['month'] == now.month and birth['day'] == now.day:
-        birth_name = birth["name"].strip()
-        birth_email = birth["email"].strip()
-        with open("letter_templates/letter_1.txt") as data_letter:
-            letter = data_letter.read()
-            letter_1 = letter.replace(PLACEHOLDER, birth_name)
-            random_letter.append(letter_1)
-        with open("letter_templates/letter_2.txt") as data_letter:
-            letter = data_letter.read()
-            letter_2 = letter.replace(PLACEHOLDER, birth_name)
-            random_letter.append(letter_2)
-        with open("letter_templates/letter_3.txt") as data_letter:
-            letter = data_letter.read()
-            letter_3 = letter.replace(PLACEHOLDER, birth_name)
-            random_letter.append(letter_3)
+def check_birthday():
+    os.system('clear')
+    for birth in birthdays:
+        if birth['month'] == now.month and birth['day'] == now.day:
+            print(f"Today is a {birth['name']}'s birthday")
+            birth_name = birth["name"].strip()
+            birth_email = birth["email"].strip()
+            with open(f"letter_templates/letter_{random.randint(1,3)}.txt") as data_letter:
+                letter = data_letter.read()
+                letter_template = letter.replace(PLACEHOLDER, birth_name)
 
-        letter = random.choice(random_letter)
+            answer = input("Do you want to send a birthday greeting?(yes or no): ")
 
-        with smtplib.SMTP("smtp.gmail.com") as connection:
-            connection.starttls()  # make the connection secure
-            connection.login(user=MY_EMAIL, password=PASSWORD)
-            connection.sendmail(
-                from_addr=MY_EMAIL,
-                to_addrs=birth_email,
-                msg=f"Subject: Happy Birthday {birth_name} :D\n\n{letter}"
-            )
-            print("Successfully sent")
+            if answer == 'yes':
+                with smtplib.SMTP("smtp.gmail.com") as connection:
+                    connection.starttls()  # make the connection secure
+                    connection.login(user=MY_EMAIL, password=PASSWORD)
+                    connection.sendmail(
+                        from_addr=MY_EMAIL,
+                        to_addrs=birth_email,
+                        msg=f"Subject: Happy Birthday {birth_name} :D\n\n{letter_template}"
+                    )
+                    print("Successfully sent")
+            else:
+                print("See you")
+
+
+if __name__ == '__main__':
+    usr_answer = int(input("What do you want to do?:\n1.- Add Birthday\n2.- Check Birthday\nType a number: "))
+    if usr_answer == 1:
+        birthday_update()
+    elif usr_answer == 2:
+        check_birthday()
+    else:
+        print("Value out of range")
