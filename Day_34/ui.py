@@ -43,7 +43,9 @@ class QuizInterface:
         try:
             q_text = self.quiz.next_question()
         except IndexError:
-            self.canvas.itemconfig(self.question_text, text="Game Over")
+            self.canvas.itemconfig(self.question_text, text="You've reached the end of the quiz.")
+            self.wrong_button.config(state="disable")
+            self.right_button.config(state="disable")
         else:
             self.canvas.itemconfig(self.question_text, text=q_text)
 
