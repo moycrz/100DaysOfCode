@@ -16,7 +16,6 @@ def is_iss_overhead():
 
     iss_longitude = float(data["iss_position"]["longitude"])
     iss_latitude = float(data["iss_position"]["latitude"])
-    iss_position = (iss_longitude, iss_latitude)
 
     if MY_LAT-5 <= iss_latitude <= MY_LAT+5 and MY_LONG-5 <= iss_longitude <= MY_LONG+5:
         return True
@@ -51,4 +50,4 @@ while True:
                 to_addrs=MY_EMAIL,
                 msg="Subject:Look Up👆\n\nThe ISS is above you in the sky."
             )
-            print("Successfully sent")
+        print("Successfully sent")
