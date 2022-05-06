@@ -5,8 +5,8 @@ import pandas
 import random
 import smtplib
 
-MY_EMAIL = "moises.crza@gmail.com"
-PASSWORD = "J@maicanegra2708"
+MY_EMAIL = ""
+PASSWORD = ""
 PLACEHOLDER = "[NAME]"
 now = dt.datetime.now()
 new_birthday = {}
